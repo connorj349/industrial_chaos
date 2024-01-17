@@ -1,26 +1,25 @@
 extends Spatial
 
-export(int) var max_health = 1
+export(int) var max_health = 1 setget set_max_health, get_max_health
 
-var health = 1
+var health = 1 setget set_health
 
-signal hurt #sends 1 arg; remaning health to update uis
-signal heal #sends 1 arg; reamining health
 signal dead
-signal health_changed #sends 1 arg; remaining health
+signal health_changed
 
 func init():
 	health = max_health
-	emit_signal("health_changed", health)
 
-func hurt(amount):
-	health = clamp(health - amount, 0, max_health)
-	emit_signal("hurt", health)
+func set_max_health(value):
+	max_health = value
+	if health > value:
+		health = max_health
+
+func get_max_health():
+	return max_health # - polluted_val # this is the value that is gained when player doesn't have air filters
+
+func set_health(val):
+	health = clamp(val, 0, max_health)
 	emit_signal("health_changed", health)
 	if health <= 0:
 		emit_signal("dead")
-
-func heal(amount):
-	health = clamp(health + amount, 0, max_health)
-	emit_signal("heal", health)
-	emit_signal("health_changed", health)

@@ -34,9 +34,6 @@ func _input(event):
 			head.rotation.x = clamp(head.rotation.x, deg2rad(-89), deg2rad(89))
 
 func _process(delta):
-	#debug close out
-	if Input.is_action_just_pressed("escape"):
-		get_tree().quit()
 	#interacting
 	if Input.is_action_just_pressed("interact"):
 		if interact_area.monitoring:
