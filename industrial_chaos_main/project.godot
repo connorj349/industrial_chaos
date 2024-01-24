@@ -9,19 +9,31 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Resource",
+"class": "GameDifficulty",
+"language": "GDScript",
+"path": "res://Data/GameDifficulty.gd"
+}, {
 "base": "Spatial",
 "class": "Interactable",
 "language": "GDScript",
-"path": "res://scenes/Interactables/Interactable.gd"
+"path": "res://Interactables/Interactable.gd"
+}, {
+"base": "Resource",
+"class": "Occupation",
+"language": "GDScript",
+"path": "res://Data/Occupation.gd"
 } ]
 _global_script_class_icons={
-"Interactable": ""
+"GameDifficulty": "",
+"Interactable": "",
+"Occupation": ""
 }
 
 [application]
 
 config/name="Industrial Chaos"
-run/main_scene="res://scenes/Main.tscn"
+run/main_scene="res://scenes/Menu.tscn"
 config/icon="res://icon.png"
 
 [autoload]

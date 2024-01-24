@@ -15,7 +15,7 @@ func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	#allow motion
 	movement.init(self)
-	#setup health
+	health.init()
 	#health.connect("health_changed", ui, "update_health_bar")
 	#health.connect("hurt", something, "play_hurt_effects")
 	#same for dead
@@ -39,8 +39,7 @@ func _process(delta):
 		if interact_area.monitoring:
 			for body in interact_area.get_overlapping_bodies():
 				if body.is_in_group("interactable"):
-					if body._interact(self):
-						pass
+					body._interact(self)
 	if !player_is_in_menu():
 		#jumping
 		if Input.is_action_just_pressed("jump") and is_on_floor():

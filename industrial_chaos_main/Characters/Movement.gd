@@ -1,6 +1,7 @@
 extends Spatial
 
-export var speed = 15
+export var max_speed = 15
+export var speed = 15 setget set_speed, get_speed
 export var gravity = 30
 export var jump_power = 10
 export var ignore_rotation = false #used by npcs for correct movement
@@ -52,6 +53,12 @@ func _physics_process(delta):
 	movement = velocity + gravity_vec
 # warning-ignore:return_value_discarded
 	body.move_and_slide_with_snap(movement, snap, Vector3.UP)
+
+func set_speed(value):
+	speed = clamp(value, 0, max_speed)
+
+func get_speed():
+	return speed # +/- nutrition, influence speed based on hunger level
 
 func freeze():
 	frozen = true
