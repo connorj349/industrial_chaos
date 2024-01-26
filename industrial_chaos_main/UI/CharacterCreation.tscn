@@ -1,8 +1,11 @@
-[gd_scene format=2]
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://UI/CharacterCreation.gd" type="Script" id=1]
 
 [node name="CharacterCreation" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = ExtResource( 1 )
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 anchor_left = 0.5
@@ -21,7 +24,7 @@ margin_right = 493.0
 margin_bottom = 493.0
 tab_align = 0
 
-[node name="Player Stats" type="VBoxContainer" parent="PanelContainer/TabContainer"]
+[node name="PlayerStats" type="VBoxContainer" parent="PanelContainer/TabContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -29,67 +32,184 @@ margin_top = 32.0
 margin_right = -4.0
 margin_bottom = -4.0
 
-[node name="HeaderInfo" type="HBoxContainer" parent="PanelContainer/TabContainer/Player Stats"]
+[node name="HeaderInfo" type="HBoxContainer" parent="PanelContainer/TabContainer/PlayerStats"]
 margin_right = 478.0
-margin_bottom = 150.0
+margin_bottom = 167.0
 rect_min_size = Vector2( 0, 100 )
 
-[node name="SelectedClassPicture" type="TextureRect" parent="PanelContainer/TabContainer/Player Stats/HeaderInfo"]
+[node name="SelectedClassPicture" type="TextureRect" parent="PanelContainer/TabContainer/PlayerStats/HeaderInfo"]
 margin_right = 150.0
-margin_bottom = 150.0
+margin_bottom = 167.0
 rect_min_size = Vector2( 150, 150 )
 
-[node name="Label" type="Label" parent="PanelContainer/TabContainer/Player Stats/HeaderInfo"]
+[node name="Label" type="Label" parent="PanelContainer/TabContainer/PlayerStats/HeaderInfo"]
 margin_left = 154.0
 margin_right = 478.0
-margin_bottom = 150.0
+margin_bottom = 167.0
 size_flags_horizontal = 3
 size_flags_vertical = 5
-text = "INTRODUCTION"
+text = "Allocate points into the following stats:
+
+Strength: Determines how quickly you work at machines and how much you can carry
+
+Perception: Determines your ability to hack terminals, aim a weapon and control recoil
+
+Toughness: Reduces the amount of damage you take from all sources"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="RemainingPointsLabel" type="Label" parent="PanelContainer/TabContainer/PlayerStats"]
+margin_top = 171.0
+margin_right = 478.0
+margin_bottom = 213.0
+size_flags_vertical = 7
+text = "Points Remaining: 5"
 align = 1
 valign = 1
 
-[node name="Stat" type="PanelContainer" parent="PanelContainer/TabContainer/Player Stats"]
-margin_top = 154.0
+[node name="StrengthStat" type="PanelContainer" parent="PanelContainer/TabContainer/PlayerStats"]
+margin_top = 217.0
 margin_right = 478.0
-margin_bottom = 229.0
+margin_bottom = 292.0
 rect_min_size = Vector2( 0, 75 )
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/TabContainer/Player Stats/Stat"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/TabContainer/PlayerStats/StrengthStat"]
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 471.0
 margin_bottom = 68.0
 
-[node name="NameLabel" type="Label" parent="PanelContainer/TabContainer/Player Stats/Stat/VBoxContainer"]
+[node name="NameLabel" type="Label" parent="PanelContainer/TabContainer/PlayerStats/StrengthStat/VBoxContainer"]
 margin_right = 464.0
 margin_bottom = 14.0
-text = "STAT_NAME"
+text = "STRENGTH"
 align = 1
 valign = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/TabContainer/Player Stats/Stat/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/TabContainer/PlayerStats/StrengthStat/VBoxContainer"]
 margin_top = 18.0
 margin_right = 464.0
 margin_bottom = 61.0
 size_flags_vertical = 3
 
-[node name="MinusButton" type="Button" parent="PanelContainer/TabContainer/Player Stats/Stat/VBoxContainer/HBoxContainer"]
-margin_right = 166.0
+[node name="MinusButton" type="Button" parent="PanelContainer/TabContainer/PlayerStats/StrengthStat/VBoxContainer/HBoxContainer"]
+margin_right = 152.0
 margin_bottom = 43.0
 size_flags_horizontal = 3
 text = "-"
 
-[node name="CurrAmountLabel" type="Label" parent="PanelContainer/TabContainer/Player Stats/Stat/VBoxContainer/HBoxContainer"]
-margin_left = 170.0
+[node name="CurrAmountLabel" type="Label" parent="PanelContainer/TabContainer/PlayerStats/StrengthStat/VBoxContainer/HBoxContainer"]
+margin_left = 156.0
 margin_top = 14.0
-margin_right = 293.0
+margin_right = 308.0
 margin_bottom = 28.0
+size_flags_horizontal = 3
 size_flags_vertical = 6
-text = "CURRENT_AMOUNT"
+text = "1"
+align = 1
+valign = 1
 
-[node name="AddButton" type="Button" parent="PanelContainer/TabContainer/Player Stats/Stat/VBoxContainer/HBoxContainer"]
-margin_left = 297.0
+[node name="AddButton" type="Button" parent="PanelContainer/TabContainer/PlayerStats/StrengthStat/VBoxContainer/HBoxContainer"]
+margin_left = 312.0
+margin_right = 464.0
+margin_bottom = 43.0
+size_flags_horizontal = 3
+text = "+"
+
+[node name="PerceptionStat" type="PanelContainer" parent="PanelContainer/TabContainer/PlayerStats"]
+margin_top = 296.0
+margin_right = 478.0
+margin_bottom = 371.0
+rect_min_size = Vector2( 0, 75 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/TabContainer/PlayerStats/PerceptionStat"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 471.0
+margin_bottom = 68.0
+
+[node name="NameLabel" type="Label" parent="PanelContainer/TabContainer/PlayerStats/PerceptionStat/VBoxContainer"]
+margin_right = 464.0
+margin_bottom = 14.0
+text = "PERCEPTION"
+align = 1
+valign = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/TabContainer/PlayerStats/PerceptionStat/VBoxContainer"]
+margin_top = 18.0
+margin_right = 464.0
+margin_bottom = 61.0
+size_flags_vertical = 3
+
+[node name="MinusButton" type="Button" parent="PanelContainer/TabContainer/PlayerStats/PerceptionStat/VBoxContainer/HBoxContainer"]
+margin_right = 152.0
+margin_bottom = 43.0
+size_flags_horizontal = 3
+text = "-"
+
+[node name="CurrAmountLabel" type="Label" parent="PanelContainer/TabContainer/PlayerStats/PerceptionStat/VBoxContainer/HBoxContainer"]
+margin_left = 156.0
+margin_top = 14.0
+margin_right = 308.0
+margin_bottom = 28.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "1"
+align = 1
+valign = 1
+
+[node name="AddButton" type="Button" parent="PanelContainer/TabContainer/PlayerStats/PerceptionStat/VBoxContainer/HBoxContainer"]
+margin_left = 312.0
+margin_right = 464.0
+margin_bottom = 43.0
+size_flags_horizontal = 3
+text = "+"
+
+[node name="ToughnessStat" type="PanelContainer" parent="PanelContainer/TabContainer/PlayerStats"]
+margin_top = 375.0
+margin_right = 478.0
+margin_bottom = 450.0
+rect_min_size = Vector2( 0, 75 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/TabContainer/PlayerStats/ToughnessStat"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 471.0
+margin_bottom = 68.0
+
+[node name="NameLabel" type="Label" parent="PanelContainer/TabContainer/PlayerStats/ToughnessStat/VBoxContainer"]
+margin_right = 464.0
+margin_bottom = 14.0
+text = "TOUGHNESS"
+align = 1
+valign = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/TabContainer/PlayerStats/ToughnessStat/VBoxContainer"]
+margin_top = 18.0
+margin_right = 464.0
+margin_bottom = 61.0
+size_flags_vertical = 3
+
+[node name="MinusButton" type="Button" parent="PanelContainer/TabContainer/PlayerStats/ToughnessStat/VBoxContainer/HBoxContainer"]
+margin_right = 152.0
+margin_bottom = 43.0
+size_flags_horizontal = 3
+text = "-"
+
+[node name="CurrAmountLabel" type="Label" parent="PanelContainer/TabContainer/PlayerStats/ToughnessStat/VBoxContainer/HBoxContainer"]
+margin_left = 156.0
+margin_top = 14.0
+margin_right = 308.0
+margin_bottom = 28.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "0"
+align = 1
+valign = 1
+
+[node name="AddButton" type="Button" parent="PanelContainer/TabContainer/PlayerStats/ToughnessStat/VBoxContainer/HBoxContainer"]
+margin_left = 312.0
 margin_right = 464.0
 margin_bottom = 43.0
 size_flags_horizontal = 3

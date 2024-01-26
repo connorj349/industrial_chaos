@@ -33,26 +33,34 @@ valign = 1
 [node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/VBoxContainer"]
 margin_top = 18.0
 margin_right = 528.0
-margin_bottom = 372.0
+margin_bottom = 354.0
 size_flags_vertical = 3
 scroll_vertical_enabled = false
 
 [node name="LevelsContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/ScrollContainer"]
 margin_right = 528.0
-margin_bottom = 354.0
+margin_bottom = 336.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="LevelButton" type="TextureButton" parent="PanelContainer/VBoxContainer/ScrollContainer/LevelsContainer"]
 margin_right = 250.0
-margin_bottom = 354.0
+margin_bottom = 336.0
 rect_min_size = Vector2( 250, 0 )
 
 [node name="CurrentDifficultySelectedLabel" type="Label" parent="PanelContainer/VBoxContainer"]
+margin_top = 358.0
+margin_right = 528.0
+margin_bottom = 372.0
+text = "Difficulty: Easy"
+align = 1
+valign = 1
+
+[node name="LivesAllowedLabel" type="Label" parent="PanelContainer/VBoxContainer"]
 margin_top = 376.0
 margin_right = 528.0
 margin_bottom = 390.0
-text = "EASY"
+text = "Player Lives: 5"
 align = 1
 valign = 1
 
@@ -117,8 +125,8 @@ margin_bottom = 486.0
 text = "Close"
 
 [connection signal="pressed" from="PanelContainer/VBoxContainer/ScrollContainer/LevelsContainer/LevelButton" to="." method="on_level_select" binds= [ "res://scenes/Main.tscn" ]]
-[connection signal="pressed" from="PanelContainer/VBoxContainer/DifficultyContainer/EasyButton" to="." method="on_difficulty_changed" binds= [ 5, "Easy" ]]
-[connection signal="pressed" from="PanelContainer/VBoxContainer/DifficultyContainer/MediumButton" to="." method="on_difficulty_changed" binds= [ 3, "Medium" ]]
-[connection signal="pressed" from="PanelContainer/VBoxContainer/DifficultyContainer/HardButton" to="." method="on_difficulty_changed" binds= [ 1, "Hard" ]]
-[connection signal="pressed" from="PanelContainer/VBoxContainer/DifficultyContainer/ChaosButton" to="." method="on_difficulty_changed" binds= [ 0, "Chaos" ]]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/DifficultyContainer/EasyButton" to="." method="on_difficulty_changed" binds= [ 0 ]]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/DifficultyContainer/MediumButton" to="." method="on_difficulty_changed" binds= [ 1 ]]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/DifficultyContainer/HardButton" to="." method="on_difficulty_changed" binds= [ 2 ]]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/DifficultyContainer/ChaosButton" to="." method="on_difficulty_changed" binds= [ 3 ]]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/CloseButton" to="." method="set_visible" binds= [ false ]]
