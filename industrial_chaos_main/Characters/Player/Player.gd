@@ -11,14 +11,11 @@ onready var health = $Health
 var cam_accel = 40
 
 func _ready():
-	#hide/lock cursor
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	#allow motion
 	movement.init(self)
 	health.init()
 	#health.connect("health_changed", ui, "update_health_bar")
-	#health.connect("hurt", something, "play_hurt_effects")
-	#same for dead
+	#health.connect("health_changed", something, "play_hurt_effects")
 	health.init()
 # warning-ignore:return_value_discarded
 	Globals.connect("toggle_cursor", self, "_toggle_cursor")

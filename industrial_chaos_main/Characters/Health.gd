@@ -8,7 +8,7 @@ signal dead
 signal health_changed
 
 func init():
-	health = max_health
+	self.health = max_health
 
 func set_max_health(value):
 	max_health = value
