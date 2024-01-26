@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://UI/CharacterCreation.gd" type="Script" id=1]
+[ext_resource path="res://icon.png" type="Texture" id=2]
 
 [node name="CharacterCreation" type="Control"]
 anchor_right = 1.0
@@ -41,8 +42,10 @@ rect_min_size = Vector2( 0, 100 )
 margin_right = 150.0
 margin_bottom = 167.0
 rect_min_size = Vector2( 150, 150 )
+texture = ExtResource( 2 )
+expand = true
 
-[node name="Label" type="Label" parent="PanelContainer/TabContainer/PlayerStats/HeaderInfo"]
+[node name="TutorialLabel" type="Label" parent="PanelContainer/TabContainer/PlayerStats/HeaderInfo"]
 margin_left = 154.0
 margin_right = 478.0
 margin_bottom = 167.0
@@ -62,16 +65,16 @@ autowrap = true
 [node name="RemainingPointsLabel" type="Label" parent="PanelContainer/TabContainer/PlayerStats"]
 margin_top = 171.0
 margin_right = 478.0
-margin_bottom = 213.0
+margin_bottom = 189.0
 size_flags_vertical = 7
 text = "Points Remaining: 5"
 align = 1
 valign = 1
 
 [node name="StrengthStat" type="PanelContainer" parent="PanelContainer/TabContainer/PlayerStats"]
-margin_top = 217.0
+margin_top = 193.0
 margin_right = 478.0
-margin_bottom = 292.0
+margin_bottom = 268.0
 rect_min_size = Vector2( 0, 75 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/TabContainer/PlayerStats/StrengthStat"]
@@ -118,9 +121,9 @@ size_flags_horizontal = 3
 text = "+"
 
 [node name="PerceptionStat" type="PanelContainer" parent="PanelContainer/TabContainer/PlayerStats"]
-margin_top = 296.0
+margin_top = 272.0
 margin_right = 478.0
-margin_bottom = 371.0
+margin_bottom = 347.0
 rect_min_size = Vector2( 0, 75 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/TabContainer/PlayerStats/PerceptionStat"]
@@ -167,9 +170,9 @@ size_flags_horizontal = 3
 text = "+"
 
 [node name="ToughnessStat" type="PanelContainer" parent="PanelContainer/TabContainer/PlayerStats"]
-margin_top = 375.0
+margin_top = 351.0
 margin_right = 478.0
-margin_bottom = 450.0
+margin_bottom = 426.0
 rect_min_size = Vector2( 0, 75 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/TabContainer/PlayerStats/ToughnessStat"]
@@ -214,6 +217,12 @@ margin_right = 464.0
 margin_bottom = 43.0
 size_flags_horizontal = 3
 text = "+"
+
+[node name="StartButton" type="Button" parent="PanelContainer/TabContainer/PlayerStats"]
+margin_top = 430.0
+margin_right = 478.0
+margin_bottom = 450.0
+text = "Spawn"
 
 [node name="Occupations" type="PanelContainer" parent="PanelContainer/TabContainer"]
 visible = false
@@ -270,3 +279,11 @@ margin_left = 390.0
 margin_right = 450.0
 margin_bottom = 86.0
 text = "Sign Up"
+
+[connection signal="pressed" from="PanelContainer/TabContainer/PlayerStats/StrengthStat/VBoxContainer/HBoxContainer/MinusButton" to="." method="on_minus_stat" binds= [ 0 ]]
+[connection signal="pressed" from="PanelContainer/TabContainer/PlayerStats/StrengthStat/VBoxContainer/HBoxContainer/AddButton" to="." method="on_add_stat" binds= [ 0 ]]
+[connection signal="pressed" from="PanelContainer/TabContainer/PlayerStats/PerceptionStat/VBoxContainer/HBoxContainer/MinusButton" to="." method="on_minus_stat" binds= [ 1 ]]
+[connection signal="pressed" from="PanelContainer/TabContainer/PlayerStats/PerceptionStat/VBoxContainer/HBoxContainer/AddButton" to="." method="on_add_stat" binds= [ 1 ]]
+[connection signal="pressed" from="PanelContainer/TabContainer/PlayerStats/ToughnessStat/VBoxContainer/HBoxContainer/MinusButton" to="." method="on_minus_stat" binds= [ 2 ]]
+[connection signal="pressed" from="PanelContainer/TabContainer/PlayerStats/ToughnessStat/VBoxContainer/HBoxContainer/AddButton" to="." method="on_add_stat" binds= [ 2 ]]
+[connection signal="pressed" from="PanelContainer/TabContainer/PlayerStats/StartButton" to="." method="spawn_player"]
