@@ -7,6 +7,7 @@ onready var camera = $Head/Camera
 onready var interact_area = $Head/Camera/InteractArea
 onready var movement = $Movement
 onready var health = $Health
+onready var stats = $Stats
 
 var cam_accel = 40
 
@@ -22,6 +23,9 @@ func _ready():
 	Globals.current_player = self
 	interact_area.connect("body_entered", self, "on_interact_body_entered")
 	interact_area.connect("body_exited", self, "on_interact_body_exited")
+
+func init_stats(starting_stats):
+	stats.init(starting_stats[0], starting_stats[1], starting_stats[2])
 
 func _input(event):
 	if !player_is_in_menu():

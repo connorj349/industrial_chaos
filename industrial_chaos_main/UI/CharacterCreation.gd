@@ -23,8 +23,11 @@ func _ready():
 	# populate the classes page
 
 func spawn_player():
-	# spawn player logic
+	Gamestate.emit_signal("on_player_spawn", starting_stats)
 	queue_free()
+	# on player death:
+	# CharacterCreation.instace() $$ set_child()
+	# character_creation_camera.enable()
 
 func set_unallocated_points(value):
 	unallocated_points = clamp(value, 0, Gamestate.player_max_allocated_points_allowed)

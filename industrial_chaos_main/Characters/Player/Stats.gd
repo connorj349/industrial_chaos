@@ -1,12 +1,12 @@
 extends Spatial
 
 # max total value of all core stats
-const max_stats = 20
+var max_stats = 20 setget, get_max_stats
 
 # core stats
-var strength setget set_strength, get_strength
-var perception setget set_perception, get_perception
-var toughness
+var strength = 1 setget set_strength, get_strength
+var perception = 1 setget set_perception, get_perception
+var toughness = 0
 
 # secondary stats
 var hunger = 0
@@ -21,22 +21,29 @@ func init(_strength, _perception, _toughness):
 	self.toughness = _toughness
 
 func set_strength(value):
-	strength = clamp(value, 0, max_stats - (self.perception + self.toughness))
+	strength = clamp(value, 0, max_stats)
 	emit_signal("on_core_stats_changed", strength, perception, toughness)
 
 func get_strength():
-	return strength - hunger
+	if filter <= 0:
+		return clamp((strength - 1) - (fatigue / 4), 0, max_stats)
+	return clamp(strength - (fatigue / 4), 0, max_stats)
 
 func set_perception(value):
-	perception = clamp(value, 0, max_stats - (self.strength + self.toughness))
+	perception = clamp(value, 0, max_stats)
 	emit_signal("on_core_stats_changed", strength, perception, toughness)
 
 func get_perception():
-	return perception - fatigue
+	if fatigue >= 5:
+		return clamp(perception - round(fatigue / 2), 0, max_stats)
+	return clamp(perception, 0, max_stats)
 
 func set_toughness(value):
-	toughness = clamp(value, 0, max_stats - (self.strength + self.perception))
+	toughness = clamp(value, 0, max_stats)
 	emit_signal("on_core_stats_changed", strength, perception, toughness)
 
 func get_toughness():
-	return toughness # + worn_armor.armor_value
+	return clamp(toughness, 0, max_stats) # + worn_armor.armor_value
+
+func get_max_stats():
+	return clamp(max_stats - (self.strength + self.perception + self.toughness), 0, 20)
