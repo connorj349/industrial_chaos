@@ -27,6 +27,23 @@ func _ready():
 func init_stats(starting_stats):
 	stats.init(starting_stats[0], starting_stats[1], starting_stats[2])
 
+func update_health_text(current_health):
+	$CanvasLayer/UI/VBoxContainer/HealthLabel.text = "HEALTH: " + str(current_health)
+
+func update_stats_text(current_stats):
+	$CanvasLayer/UI/VBoxContainer/StrengthLabel.text = "STRENGTH: " + str(current_stats[0])
+	$CanvasLayer/UI/VBoxContainer/PerceptionLabel.text = "PERCEPTION: " + str(current_stats[1])
+	$CanvasLayer/UI/VBoxContainer/ToughnessLabel.text = "TOUGHNESS: " + str(current_stats[2])
+
+func update_filter_text(remaining_filter):
+	$CanvasLayer/UI/VBoxContainer/FilterLabel.text = "FILTER: " + str(remaining_filter)
+
+func update_fatigue_text(current_fatigue):
+	$CanvasLayer/UI/VBoxContainer/FatigueLabel.text = "FATIGUE: " + str(current_fatigue)
+
+func update_hunger_text(current_hunger):
+	$CanvasLayer/UI/VBoxContainer/HungerLabel.text = "HUNGER: " + str(current_hunger)
+
 func _input(event):
 	if !player_is_in_menu():
 		if event is InputEventMouseMotion:

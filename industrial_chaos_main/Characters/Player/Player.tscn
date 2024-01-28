@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Characters/Movement.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Characters/Health.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Characters/Player/Player.gd" type="Script" id=3]
 [ext_resource path="res://Characters/Player/Stats.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Data/font/test_hud_font.tres" type="DynamicFont" id=5]
 
 [sub_resource type="CapsuleShape" id=1]
 
@@ -40,6 +41,66 @@ shape = SubResource( 2 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UI"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -402.0
+margin_right = 400.0
+
+[node name="HealthLabel" type="Label" parent="CanvasLayer/UI/VBoxContainer"]
+margin_right = 400.0
+margin_bottom = 54.0
+custom_fonts/font = ExtResource( 5 )
+text = "Health"
+
+[node name="FilterLabel" type="Label" parent="CanvasLayer/UI/VBoxContainer"]
+margin_top = 58.0
+margin_right = 400.0
+margin_bottom = 112.0
+custom_fonts/font = ExtResource( 5 )
+text = "FILTER"
+
+[node name="FatigueLabel" type="Label" parent="CanvasLayer/UI/VBoxContainer"]
+margin_top = 116.0
+margin_right = 400.0
+margin_bottom = 170.0
+custom_fonts/font = ExtResource( 5 )
+text = "FATIGUE"
+
+[node name="HungerLabel" type="Label" parent="CanvasLayer/UI/VBoxContainer"]
+margin_top = 174.0
+margin_right = 400.0
+margin_bottom = 228.0
+custom_fonts/font = ExtResource( 5 )
+text = "HUNGER"
+
+[node name="StrengthLabel" type="Label" parent="CanvasLayer/UI/VBoxContainer"]
+margin_top = 232.0
+margin_right = 400.0
+margin_bottom = 286.0
+custom_fonts/font = ExtResource( 5 )
+text = "STRENGTH"
+
+[node name="PerceptionLabel" type="Label" parent="CanvasLayer/UI/VBoxContainer"]
+margin_top = 290.0
+margin_right = 400.0
+margin_bottom = 344.0
+custom_fonts/font = ExtResource( 5 )
+text = "PERCEPTION"
+
+[node name="ToughnessLabel" type="Label" parent="CanvasLayer/UI/VBoxContainer"]
+margin_top = 348.0
+margin_right = 400.0
+margin_bottom = 402.0
+custom_fonts/font = ExtResource( 5 )
+text = "TOUGHNESS"
+
 [node name="GUI" type="Control" parent="CanvasLayer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+
+[connection signal="health_changed" from="Health" to="." method="update_health_text"]
+[connection signal="on_core_stats_changed" from="Stats" to="." method="update_stats_text"]
+[connection signal="on_fatigue_changed" from="Stats" to="." method="update_fatigue_text"]
+[connection signal="on_filter_changed" from="Stats" to="." method="update_filter_text"]
+[connection signal="on_hunger_changed" from="Stats" to="." method="update_hunger_text"]
