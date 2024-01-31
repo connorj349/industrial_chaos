@@ -1,6 +1,9 @@
 extends Control
 
 const max_stat = 20
+const occupation_slot_prefab = preload("res://UI/OccupationSlot.tscn")
+
+onready var occupation_holder = $PanelContainer/TabContainer/Occupations/ScrollContainer/VBoxContainer
 
 var unallocated_points setget set_unallocated_points
 var starting_stats = [1, 1, 0] setget set_starting_stats
@@ -20,14 +23,26 @@ func _ready():
 # warning-ignore:return_value_discarded
 	connect("on_stats_changed", self, "update_ui")
 	self.unallocated_points = Gamestate.player_max_allocated_points_allowed
-	# populate the classes page
+	populate_occupations_page()
+
+func populate_occupations_page():
+	if Gamestate.game_difficulty.allowed_occupations.size() > 0:
+		for o in Gamestate.game_difficulty.allowed_occupations:
+			var new_occupation_slot = occupation_slot_prefab.instance()
+			occupation_holder.add_child(new_occupation_slot)
+			new_occupation_slot.get_node("HBoxContainer/NameLabel").text = o.occupation_name
+			new_occupation_slot.get_node("HBoxContainer/DescriptionLabel").text = o.occupation_description
+			new_occupation_slot.get_node("HBoxContainer/ChooseButton").connect("pressed", self, "spawn_player_as_occupation", [o])
+
+func spawn_player_as_occupation(occupation):
+	starting_stats[0] = occupation.starting_strength
+	starting_stats[1] = occupation.starting_perception
+	starting_stats[2] = occupation.starting_toughness
+	spawn_player()
 
 func spawn_player():
 	Gamestate.emit_signal("on_player_spawn", starting_stats)
 	queue_free()
-	# on player death:
-	# CharacterCreation.instace() $$ set_child()
-	# character_creation_camera.enable()
 
 func set_unallocated_points(value):
 	unallocated_points = clamp(value, 0, Gamestate.player_max_allocated_points_allowed)

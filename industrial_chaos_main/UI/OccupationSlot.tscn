@@ -1,0 +1,37 @@
+[gd_scene format=2]
+
+[node name="OccupationSlot" type="PanelContainer"]
+margin_right = 464.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 0, 100 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 457.0
+margin_bottom = 93.0
+
+[node name="NameLabel" type="Label" parent="HBoxContainer"]
+margin_top = 36.0
+margin_right = 82.0
+margin_bottom = 50.0
+text = "CLASS_NAME"
+
+[node name="DescriptionLabel" type="Label" parent="HBoxContainer"]
+margin_left = 86.0
+margin_top = 10.0
+margin_right = 386.0
+margin_bottom = 75.0
+size_flags_horizontal = 3
+text = "CLASS_DESCRIPTION
+
+Starting stats:
+Strength: 0 Perception: 0 Toughness: 0"
+align = 1
+valign = 1
+
+[node name="ChooseButton" type="Button" parent="HBoxContainer"]
+margin_left = 390.0
+margin_right = 450.0
+margin_bottom = 86.0
+text = "Sign Up"

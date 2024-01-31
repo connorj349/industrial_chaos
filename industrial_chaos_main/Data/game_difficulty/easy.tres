@@ -1,9 +1,10 @@
-[gd_resource type="Resource" load_steps=2 format=2]
+[gd_resource type="Resource" load_steps=3 format=2]
 
 [ext_resource path="res://Data/game_difficulty/GameDifficulty.gd" type="Script" id=1]
+[ext_resource path="res://Data/occupations/worker.tres" type="Resource" id=2]
 
 [resource]
 script = ExtResource( 1 )
 allowed_allocated_points = 5
 lives_allowed = 5
-allowed_occupations = [  ]
+allowed_occupations = [ ExtResource( 2 ) ]

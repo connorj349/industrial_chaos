@@ -22,7 +22,7 @@ margin_bottom = 250.0
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 493.0
-margin_bottom = 493.0
+margin_bottom = 519.0
 tab_align = 0
 
 [node name="PlayerStats" type="VBoxContainer" parent="PanelContainer/TabContainer"]
@@ -65,16 +65,16 @@ autowrap = true
 [node name="RemainingPointsLabel" type="Label" parent="PanelContainer/TabContainer/PlayerStats"]
 margin_top = 171.0
 margin_right = 478.0
-margin_bottom = 189.0
+margin_bottom = 185.0
 size_flags_vertical = 7
 text = "Points Remaining: 5"
 align = 1
 valign = 1
 
 [node name="StrengthStat" type="PanelContainer" parent="PanelContainer/TabContainer/PlayerStats"]
-margin_top = 193.0
+margin_top = 189.0
 margin_right = 478.0
-margin_bottom = 268.0
+margin_bottom = 264.0
 rect_min_size = Vector2( 0, 75 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/TabContainer/PlayerStats/StrengthStat"]
@@ -121,9 +121,9 @@ size_flags_horizontal = 3
 text = "+"
 
 [node name="PerceptionStat" type="PanelContainer" parent="PanelContainer/TabContainer/PlayerStats"]
-margin_top = 272.0
+margin_top = 268.0
 margin_right = 478.0
-margin_bottom = 347.0
+margin_bottom = 343.0
 rect_min_size = Vector2( 0, 75 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/TabContainer/PlayerStats/PerceptionStat"]
@@ -170,9 +170,9 @@ size_flags_horizontal = 3
 text = "+"
 
 [node name="ToughnessStat" type="PanelContainer" parent="PanelContainer/TabContainer/PlayerStats"]
-margin_top = 351.0
+margin_top = 347.0
 margin_right = 478.0
-margin_bottom = 426.0
+margin_bottom = 422.0
 rect_min_size = Vector2( 0, 75 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/TabContainer/PlayerStats/ToughnessStat"]
@@ -219,9 +219,10 @@ size_flags_horizontal = 3
 text = "+"
 
 [node name="StartButton" type="Button" parent="PanelContainer/TabContainer/PlayerStats"]
-margin_top = 430.0
+margin_top = 426.0
 margin_right = 478.0
-margin_bottom = 450.0
+margin_bottom = 476.0
+rect_min_size = Vector2( 0, 50 )
 text = "Spawn"
 
 [node name="Occupations" type="PanelContainer" parent="PanelContainer/TabContainer"]
@@ -246,39 +247,6 @@ margin_right = 464.0
 margin_bottom = 436.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-
-[node name="Class" type="PanelContainer" parent="PanelContainer/TabContainer/Occupations/ScrollContainer/VBoxContainer"]
-margin_right = 464.0
-margin_bottom = 100.0
-rect_min_size = Vector2( 0, 100 )
-
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/TabContainer/Occupations/ScrollContainer/VBoxContainer/Class"]
-margin_left = 7.0
-margin_top = 7.0
-margin_right = 457.0
-margin_bottom = 93.0
-
-[node name="NameLabel" type="Label" parent="PanelContainer/TabContainer/Occupations/ScrollContainer/VBoxContainer/Class/HBoxContainer"]
-margin_top = 36.0
-margin_right = 82.0
-margin_bottom = 50.0
-text = "CLASS_NAME"
-
-[node name="DescriptionLabel" type="Label" parent="PanelContainer/TabContainer/Occupations/ScrollContainer/VBoxContainer/Class/HBoxContainer"]
-margin_left = 86.0
-margin_top = 36.0
-margin_right = 386.0
-margin_bottom = 50.0
-size_flags_horizontal = 3
-text = "CLASS_DESCRIPTION"
-align = 1
-valign = 1
-
-[node name="ChooseButton" type="Button" parent="PanelContainer/TabContainer/Occupations/ScrollContainer/VBoxContainer/Class/HBoxContainer"]
-margin_left = 390.0
-margin_right = 450.0
-margin_bottom = 86.0
-text = "Sign Up"
 
 [connection signal="pressed" from="PanelContainer/TabContainer/PlayerStats/StrengthStat/VBoxContainer/HBoxContainer/MinusButton" to="." method="on_minus_stat" binds= [ 0 ]]
 [connection signal="pressed" from="PanelContainer/TabContainer/PlayerStats/StrengthStat/VBoxContainer/HBoxContainer/AddButton" to="." method="on_add_stat" binds= [ 0 ]]

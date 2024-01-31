@@ -1,0 +1,14 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://Data/occupations/Occupation.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+starting_strength = 4
+starting_perception = 1
+starting_toughness = 1
+occupation_name = "Facility Worker"
+occupation_description = "A rough and able-bodied facility worker.
+
+Starting Stats:
+Strength: 4     Perception: 1    Toughness: 1"

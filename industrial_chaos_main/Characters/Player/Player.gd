@@ -15,32 +15,36 @@ func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	movement.init(self)
 	health.init()
-	#health.connect("health_changed", ui, "update_health_bar")
 	#health.connect("health_changed", something, "play_hurt_effects")
-	health.init()
 # warning-ignore:return_value_discarded
 	Globals.connect("toggle_cursor", self, "_toggle_cursor")
 	Globals.current_player = self
-	interact_area.connect("body_entered", self, "on_interact_body_entered")
-	interact_area.connect("body_exited", self, "on_interact_body_exited")
+
+func take_damage(amount):
+	var reduced_damage = amount * (float(stats.toughness) / 20.0)
+	health.health -= round(amount - reduced_damage)
 
 func init_stats(starting_stats):
 	stats.init(starting_stats[0], starting_stats[1], starting_stats[2])
 
+func on_death():
+	Gamestate.emit_signal("on_player_death")
+	Globals.emit_signal("toggle_cursor", true)
+	queue_free()
+
+# change this to a healthbar
 func update_health_text(current_health):
 	$CanvasLayer/UI/VBoxContainer/HealthLabel.text = "HEALTH: " + str(current_health)
 
-func update_stats_text(current_stats):
-	$CanvasLayer/UI/VBoxContainer/StrengthLabel.text = "STRENGTH: " + str(current_stats[0])
-	$CanvasLayer/UI/VBoxContainer/PerceptionLabel.text = "PERCEPTION: " + str(current_stats[1])
-	$CanvasLayer/UI/VBoxContainer/ToughnessLabel.text = "TOUGHNESS: " + str(current_stats[2])
-
+# change to bar
 func update_filter_text(remaining_filter):
 	$CanvasLayer/UI/VBoxContainer/FilterLabel.text = "FILTER: " + str(remaining_filter)
 
+# change to bar
 func update_fatigue_text(current_fatigue):
 	$CanvasLayer/UI/VBoxContainer/FatigueLabel.text = "FATIGUE: " + str(current_fatigue)
 
+# change to bar
 func update_hunger_text(current_hunger):
 	$CanvasLayer/UI/VBoxContainer/HungerLabel.text = "HUNGER: " + str(current_hunger)
 
@@ -52,13 +56,13 @@ func _input(event):
 			head.rotation.x = clamp(head.rotation.x, deg2rad(-89), deg2rad(89))
 
 func _process(delta):
-	#interacting
-	if Input.is_action_just_pressed("interact"):
-		if interact_area.monitoring:
-			for body in interact_area.get_overlapping_bodies():
-				if body.is_in_group("interactable"):
-					body._interact(self)
 	if !player_is_in_menu():
+		#interacting
+		if Input.is_action_just_pressed("interact"):
+			if interact_area.monitoring:
+				for body in interact_area.get_overlapping_bodies():
+					if body.is_in_group("interactable"):
+						body._interact(self)
 		#jumping
 		if Input.is_action_just_pressed("jump") and is_on_floor():
 				movement.jump()
@@ -71,14 +75,6 @@ func _process(delta):
 	else:
 		movement.set_move_vector(Vector3.ZERO)
 	camera_physics_interpolation(delta)
-
-func on_interact_body_entered(body):
-	if body.is_in_group("interactable"):
-		body.toggle_select(true)
-
-func on_interact_body_exited(body):
-	if body.is_in_group("interactable"):
-		body.toggle_select(false) 
 
 func _toggle_cursor(toggle):
 	if toggle:
